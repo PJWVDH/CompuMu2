@@ -24,7 +24,7 @@ You can access the lecture notes at the following links.
 ### Visualising the AI Song Contest
 
 ```{r}
-aisc2024 <- read_csv("C:/Users/Wijnand/Downloads/CompMuGit/aisc2024.csv")
+aisc2024 <- read_csv("C:/Users/Wijnand/Downloads/CompuMuGit/aisc2024.csv")
 aisc2024 |>                   # Start with the data
   ggplot(                     # Set up the plot.
     aes(
