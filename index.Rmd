@@ -1,7 +1,7 @@
 ---
 title: "Demo Portfolio for Computational Musicology 2025"
-author: "Wijnand van den Hoogen"
-date: "19/02/2025"
+author: "John Ashley Burgoyne"
+date: "Block 4"
 output: 
   flexdashboard::flex_dashboard:
     storyboard: true
@@ -13,13 +13,9 @@ library(flexdashboard)
 library(plotly)
 ```
 
-### Welcome to Computational Musicology 2024!
+### Welcome to Computational Musicology 2025!
 
-Welcome to Computational Musicology 2024! This storyboard contains further examples from each week to inspire you.
-
-You can access the lecture notes at the following links.
-
-- [Week 7 · Computational Musicology and (Audio) Visualisation](./notes/compmus2025-w07.html)
+Welcome to Computational Musicology 2025! This is going to be the introductry page for the final portfolio
 
 ### Visualising the AI Song Contest
 
@@ -72,4 +68,15 @@ ggplotly()
 
 ***
 
-This is the bad visualisation of the AI Song Contest we used in our first lab session, this time in a dashboard.
+TThis is a reproduction of the initial AI Song Contest visualisation from our first lab session, now integrated into a dashboard format.
+
+### Discussion: Insights & Next Steps
+
+- **Patterns observed:** Faster tempos correlate with higher arousal levels.
+- **Limitations:** The dataset lacks information on lyrical content and emotional perception.
+
+### My Tracks & Creation Process
+
+This repository also includes original compositions. These tracks were created using a combination of digital audio workstations (DAWs), MIDI synthesis, and AI-assisted composition tools. The goal was to experiment with algorithmic composition techniques while maintaining human musical intuition.
+
+More details on my workflow and influences can be found in the accompanying README file in the repository.
