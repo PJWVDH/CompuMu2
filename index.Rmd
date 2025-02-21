@@ -5,6 +5,21 @@ date: "21/02/2025"
 output: 
   flexdashboard::flex_dashboard:
     storyboard: true
+    theme:
+      version: 4
+      bg: "#101010"
+      fg: "#FDF7F7" 
+      primary: "#3ADAC6"
+      navbar-bg: "#ED79F9"
+      base_font: 
+        google: Prompt
+      heading_font:
+        google: Sen
+      code_font:
+        google: 
+          # arguments to sass::font_google() 
+          family: JetBrains Mono
+          local: false
 ---
 
 ```{r setup, include=FALSE}
@@ -27,7 +42,17 @@ aisc2024 |>
   ggplot(aes(x = tempo, fill = danceability_bin)) +
   geom_density(alpha = 0.5) +
   scale_fill_viridis_d() +  # Use a discrete version of viridis
-  theme_minimal() +
+  theme_minimal(base_size = 14) +  # Set base text size
+  theme(
+    panel.background = element_rect(fill = "white", color = "white"),  # White background
+    plot.background = element_rect(fill = "white", color = "white"),   # White outer background
+    legend.background = element_rect(fill = "white"),  # White legend background
+    text = element_text(color = "black"),  # Set all text to black
+    axis.text = element_text(color = "black"),  # Black axis labels
+    axis.title = element_text(color = "black"),  # Black axis titles
+    legend.text = element_text(color = "black"),  # Black legend text
+    legend.title = element_text(color = "black")   # Black legend title
+  ) +
   labs(
     x = "Tempo",
     y = "Density",
@@ -37,6 +62,8 @@ aisc2024 |>
   ) +
   facet_wrap(~danceability_bin)
 ggplotly()
+
+
 
 ```
 
@@ -62,5 +89,3 @@ This visualization helps us understand how AI-generated music organizes rhythmic
 ### My Tracks & Creation Process
 
 This repository also includes original compositions. These tracks were created using a combination of digital audio workstations (DAWs), MIDI synthesis, and AI-assisted composition tools. The goal was to experiment with algorithmic composition techniques while maintaining human musical intuition.
-
-More details on my workflow and influences can be found in the accompanying README file in the repository.
