@@ -1,7 +1,7 @@
 ---
-title: "Demo Portfolio for Computational Musicology 2025"
-author: "John Ashley Burgoyne"
-date: "Block 4"
+title: "Computational Musicology 2025"
+author: "Wijnand van den Hoogen"
+date: "21/02/2025"
 output: 
   flexdashboard::flex_dashboard:
     storyboard: true
@@ -15,64 +15,48 @@ library(plotly)
 
 ### Welcome to Computational Musicology 2025!
 
-Welcome to Computational Musicology 2025! This is going to be the introductry page for the final portfolio
+Welcome to Computational Musicology 2025! This is going to be the intro page for the final portfolio
 
 ### Visualising the AI Song Contest
 
 ```{r}
 aisc2024 <- read_csv("C:/Users/Wijnand/Downloads/CompuMuGit/aisc2024.csv")
-aisc2024 |>                   # Start with the data
-  ggplot(                     # Set up the plot.
-    aes(
-      x = tempo,
-      y = arousal,
-      size = instrumentalness,
-      colour = danceability
-    )
-  ) +
-  geom_point() +              # Scatter plot.
-  geom_rug(linewidth = 0.1) + # Add 'fringes' to show data distribution.
-  geom_text(                  # Add text labels from above.
-    x = 121,
-    y = 4.91,
-    label = "Onda Corta - Sud America",
-    size = 3,                 # Override size (not loudness here).
-    hjust = "left",           # Align left side of label with the point.
-    vjust = "center",         # Align vertical centre of label with the point.
-    angle = 30                # Rotate the text label
-  ) +
-  scale_x_continuous(         # Fine-tune the x axis.
-    limits = c(50, 200),
-    breaks = c(50, 100, 150, 200), # Specify grid lines
-    minor_breaks = NULL       # Remove 'minor' grid lines.
-  ) +
-  scale_y_continuous(         # Fine-tune the y axis in the same way.
-    limits = c(1, 9),
-    breaks = c(1, 5, 9),
-    minor_breaks = NULL
-  ) +
-  scale_colour_viridis_c() +  # Use the popular viridis colour palette.
-  scale_size_continuous(      # Fine-tune the sizes of each point.
-    trans = "exp",            # Use an exp transformation to emphasise loud..
-    guide = "none"            # Remove the legend for size.
-  ) +
-  theme_light() +             # Use a simpler theme.
-  labs(                       # Make the titles nice.
+
+aisc2024 |> 
+  mutate(danceability_bin = cut(danceability, breaks = 4, labels = c("Low", "Medium", "High", "Very High"))) |> 
+  ggplot(aes(x = tempo, fill = danceability_bin)) +
+  geom_density(alpha = 0.5) +
+  scale_fill_viridis_d() +  # Use a discrete version of viridis
+  theme_minimal() +
+  labs(
     x = "Tempo",
-    y = "Arousal",
-    colour = "Danceability"
-  )
+    y = "Density",
+    fill = "Danceability Level",
+    title = "Density Distribution of Tempo",
+    subtitle = "Faceted by Danceability Levels"
+  ) +
+  facet_wrap(~danceability_bin)
 ggplotly()
+
 ```
 
 
 ***
 
-TThis is a reproduction of the initial AI Song Contest visualisation from our first lab session, now integrated into a dashboard format.
+Exploring Tempo Distributions
+This density plot visualizes the distribution of tempos in the AI Song Contest dataset. The x-axis represents tempo (beats per minute, BPM), while the y-axis shows density, indicating how frequently different tempo ranges appear in the dataset.
+
+The fill color represents danceability, meaning that more danceable songs are highlighted in different shades. This allows us to explore whether certain tempos are more common in highly danceable tracks.
+
+Key Insights:
+The dataset shows clear peaks, suggesting that AI-generated songs tend to favor specific tempo ranges.
+The smooth distribution helps identify whether AI compositions cluster around conventional musical tempo patterns or diverge from human-created norms.
+By incorporating danceability, we gain additional insight into the relationship between rhythmic elements and listener engagement.
+This visualization helps us understand how AI-generated music organizes rhythmic elements, potentially revealing biases or preferences in algorithmic composition.
 
 ### Discussion: Insights & Next Steps
 
-- **Patterns observed:** Faster tempos correlate with higher arousal levels.
+- **Patterns observed:** The dataset shows clear peaks, suggesting that AI-generated songs tend to favor specific tempo ranges. The smooth distribution helps identify whether AI compositions cluster around conventional musical tempo patterns or diverge from human-created norms.
 - **Limitations:** The dataset lacks information on lyrical content and emotional perception.
 
 ### My Tracks & Creation Process
