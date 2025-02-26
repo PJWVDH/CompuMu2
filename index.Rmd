@@ -82,29 +82,34 @@ The smooth distribution helps identify whether AI compositions cluster around co
 By incorporating danceability, we gain additional insight into the relationship between rhythmic elements and listener engagement.
 This visualization helps us understand how AI-generated music organizes rhythmic elements, potentially revealing biases or preferences in algorithmic composition.
 
-### Visualising the corpus
+### Timbre & Chroma Analysis
 
 ```{r}
 
-"C:/Users/Wijnand/Downloads/CompuMuGit/features/features/ahram-j-1.json" |>                           # Change the track
+# Chroma Self-Similarity
+chroma_plot <- "C:/Users/Wijnand/Downloads/CompuMuGit/features/features/berend-b-2.json" |>   
   compmus_chroma(norm = "identity") |>                 # Change the norm
-  ggplot(aes(x = time, y = pc, fill = value)) + 
+  compmus_self_similarity(
+    feature = pc,
+    distance = "euclidean"                             # Change the distance
+  ) |>   
+  ggplot(aes(x = xtime, y = ytime, fill = d)) + 
   geom_raster() +
-  scale_y_continuous(
-    breaks = 0:11,
-    minor_breaks = NULL,
-    labels = c(
-                "C", "C#|Db", "D", "D#|Eb",
-                "E", "F", "F#|Gb", "G",
-                "G#|Ab", "A", "A#|Bb", "B"
-              )
-  ) +
   scale_fill_viridis_c(guide = "none") +               # Change the colours?
   labs(x = "Time (s)", y = NULL, fill = NULL) +
-  theme_classic()
+  theme_classic()   
 
 ```
 
+
+***
+
+Uitleg: Chroma & Timbre Analyse
+
+- **Chroma Self-Similarity:** Deze plot visualiseert de harmonische structuur van een muziekstuk. Patronen in de chroma zelf-similariteit kunnen wijzen op herhaalde akkoorden of toonladders.
+- **Timbre (MFCC) Self-Similarity:** Dit representeert de klankkleur van de muziek. Variaties in timbre kunnen verband houden met instrumentatie, dynamiek en mixtechnieken.
+
+Door beide visualisaties naast elkaar te plaatsen, kunnen we verbanden leggen tussen harmonische en timbrale structuren in een nummer.
 
 ### Discussion: Insights & Next Steps
 
