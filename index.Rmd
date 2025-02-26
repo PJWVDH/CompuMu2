@@ -84,23 +84,36 @@ This visualization helps us understand how AI-generated music organizes rhythmic
 
 ### Timbre & Chroma Analysis
 
-```{r}
+```{r, out.width="100%", out.height="60%"}
 
-# Chroma Self-Similarity
 chroma_plot <- "C:/Users/Wijnand/Downloads/CompuMuGit/features/features/berend-b-2.json" |>   
   compmus_chroma(norm = "identity") |>                 # Change the norm
   compmus_self_similarity(
     feature = pc,
+    distance = "euclidean"                             # Change the distance
+  ) |>
+  ggplot(aes(x = xtime, y = ytime, fill = d)) + 
+  geom_raster() +
+  scale_fill_viridis_c(guide = "none") +               # Change the colours?
+  labs(x = "Time (s)", y = NULL, fill = NULL) +
+  theme_classic()       
+chroma_plot
+
+chroma_plot <- "C:/Users/Wijnand/Downloads/CompuMuGit/features/features/berend-b-2.json" |>  
+  compmus_mfccs(norm = "identity") |>                  # Change the norm
+  compmus_self_similarity(
+    feature = mfcc,
     distance = "euclidean"                             # Change the distance
   ) |>   
   ggplot(aes(x = xtime, y = ytime, fill = d)) + 
   geom_raster() +
   scale_fill_viridis_c(guide = "none") +               # Change the colours?
   labs(x = "Time (s)", y = NULL, fill = NULL) +
-  theme_classic()   
+  theme_classic() 
+
+chroma_plot
 
 ```
-
 
 ***
 
