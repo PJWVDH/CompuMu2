@@ -29,6 +29,49 @@ library(plotly)
 source("compmus.R")
 ```
 
+### Timbre & Chroma Analysis
+
+```{r, out.width="100%", out.height="60%"}
+
+chroma_plot <- "C:/Users/Wijnand/Downloads/CompuMuGit/features/features/berend-b-2.json" |>   
+  compmus_chroma(norm = "identity") |>                 # Change the norm
+  compmus_self_similarity(
+    feature = pc,
+    distance = "euclidean"                             # Change the distance
+  ) |>
+  ggplot(aes(x = xtime, y = ytime, fill = d)) + 
+  geom_raster() +
+  scale_fill_viridis_c(guide = "none") +               # Change the colours?
+  labs(x = "Time (s)", y = NULL, fill = NULL) +
+  theme_classic()       
+chroma_plot
+
+chroma_plot <- "C:/Users/Wijnand/Downloads/CompuMuGit/features/features/berend-b-2.json" |>  
+  compmus_mfccs(norm = "identity") |>                  # Change the norm
+  compmus_self_similarity(
+    feature = mfcc,
+    distance = "euclidean"                             # Change the distance
+  ) |>   
+  ggplot(aes(x = xtime, y = ytime, fill = d)) + 
+  geom_raster() +
+  scale_fill_viridis_c(guide = "none") +               # Change the colours?
+  labs(x = "Time (s)", y = NULL, fill = NULL) +
+  theme_classic() 
+
+chroma_plot
+
+```
+
+***
+
+Explanation: Chroma & Timbre Analyse
+
+- **Chroma Self-Similarity:** this plot is visualizing the harmonic structure of a musical piece.Patterns in the chroma self similarity can point to repeating chords and music scales. The song chosen is the first track from Berend. This is because my tracks are unfortunatly not yet in the corpus. So I will explain this plot as soon as it is my song. The same goes for the timbre self similarity plot
+- **Timbre (MFCC) Self-Similarity:** This represents the timbre of the song. Variations in timbre can be related to instrumentelness and dynamics.
+
+By looking at the plots together we can look at similarities between the plots and maybe see some interesting patterns.
+
+
 ### Welcome to Computational Musicology 2025!
 
 Welcome to Computational Musicology 2025! This is going to be the intro page for the final portfolio
@@ -82,47 +125,6 @@ The smooth distribution helps identify whether AI compositions cluster around co
 By incorporating danceability, we gain additional insight into the relationship between rhythmic elements and listener engagement.
 This visualization helps us understand how AI-generated music organizes rhythmic elements, potentially revealing biases or preferences in algorithmic composition.
 
-### Timbre & Chroma Analysis
-
-```{r, out.width="100%", out.height="60%"}
-
-chroma_plot <- "C:/Users/Wijnand/Downloads/CompuMuGit/features/features/berend-b-2.json" |>   
-  compmus_chroma(norm = "identity") |>                 # Change the norm
-  compmus_self_similarity(
-    feature = pc,
-    distance = "euclidean"                             # Change the distance
-  ) |>
-  ggplot(aes(x = xtime, y = ytime, fill = d)) + 
-  geom_raster() +
-  scale_fill_viridis_c(guide = "none") +               # Change the colours?
-  labs(x = "Time (s)", y = NULL, fill = NULL) +
-  theme_classic()       
-chroma_plot
-
-chroma_plot <- "C:/Users/Wijnand/Downloads/CompuMuGit/features/features/berend-b-2.json" |>  
-  compmus_mfccs(norm = "identity") |>                  # Change the norm
-  compmus_self_similarity(
-    feature = mfcc,
-    distance = "euclidean"                             # Change the distance
-  ) |>   
-  ggplot(aes(x = xtime, y = ytime, fill = d)) + 
-  geom_raster() +
-  scale_fill_viridis_c(guide = "none") +               # Change the colours?
-  labs(x = "Time (s)", y = NULL, fill = NULL) +
-  theme_classic() 
-
-chroma_plot
-
-```
-
-***
-
-Uitleg: Chroma & Timbre Analyse
-
-- **Chroma Self-Similarity:** Deze plot visualiseert de harmonische structuur van een muziekstuk. Patronen in de chroma zelf-similariteit kunnen wijzen op herhaalde akkoorden of toonladders.
-- **Timbre (MFCC) Self-Similarity:** Dit representeert de klankkleur van de muziek. Variaties in timbre kunnen verband houden met instrumentatie, dynamiek en mixtechnieken.
-
-Door beide visualisaties naast elkaar te plaatsen, kunnen we verbanden leggen tussen harmonische en timbrale structuren in een nummer.
 
 ### Discussion: Insights & Next Steps
 
@@ -131,4 +133,4 @@ Door beide visualisaties naast elkaar te plaatsen, kunnen we verbanden leggen tu
 
 ### My Tracks & Creation Process
 
-This repository also includes original compositions. These tracks were created using a combination of digital audio workstations (DAWs), MIDI synthesis, and AI-assisted composition tools. The goal was to experiment with algorithmic composition techniques while maintaining human musical intuition.
+This repository also includes original compositions. These tracks were created using AI-assisted composition tools. The goal was to experiment with algorithmic composition techniques while maintaining human musical intuition.
