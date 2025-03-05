@@ -30,9 +30,9 @@ source("compmus.R")
 ```
 
 
-###
+### Chordogram & keygram
 
-```{r, out.width="100%", out.height="60%"}
+```{r, out.width="100%", out.height="50%"}
 
 #      C     C#    D     Eb    E     F     F#    G     Ab    A     Bb    B
 major_chord <-
@@ -117,23 +117,48 @@ key_templates <-
   )
 
 "C:/Users/Wijnand/Downloads/CompuMuGit/features/features/berend-b-2.json" |> 
-  compmus_chroma(norm = "identity") |> 
+  compmus_chroma(norm = "euclidean") |> 
   compmus_match_pitch_templates(
-    key_templates,         # Change to chord_templates if desired
-    norm = "identity",       # Try different norms (and match it with what you used in `compmus_chroma`)
+    chord_templates,         # Change to chord_templates if desired
+    norm = "euclidean",       # Try different norms (and match it with what you used in `compmus_chroma`)
     distance = "cosine"   # Try different distance metrics
   ) |>
   ggplot(aes(x = time, y = name, fill = d)) + 
   geom_raster() +
   scale_fill_viridis_c(guide = "none") +               # Change the colours?
   labs(x = "Time (s)", y = "Template", fill = NULL) +
-  theme_classic()  
+  theme_classic()
+
+"C:/Users/Wijnand/Downloads/CompuMuGit/features/features/berend-b-2.json" |> 
+  compmus_chroma(norm = "euclidean") |> 
+  compmus_match_pitch_templates(
+    key_templates,         # Change to chord_templates if desired
+    norm = "euclidean",       # Try different norms (and match it with what you used in `compmus_chroma`)
+    distance = "cosine"   # Try different distance metrics
+  ) |>
+  ggplot(aes(x = time, y = name, fill = d)) + 
+  geom_raster() +
+  scale_fill_viridis_c(guide = "none") +               # Change the colours?
+  labs(x = "Time (s)", y = "Template", fill = NULL) +
+  theme_classic()
+
+
 
 ```
 
+***
+
+- **In the plots we can see a chordogram and a keygram respectively. My tracks are not yet in the corpus unfortunately, so the tracks that are visible are those of Berend-2. When my tracks are added I will go deeper into the analysis. The norm right now is euclidean and the distance is cosine**.
+
+
+-A **chordogram** is a visual representation of the harmonic structure of a musical piece, showing the distribution and progression of chords over time. It often appears as a heatmap or graph, highlighting the frequency and transitions of different chords, helping musicologists analyze harmonic patterns, tonality, and stylistic tendencies. Chordograms are especially useful in computational musicology to compare harmonic trends across genres or historical periods.
+
+-A **keygram** is a graphical tool that represents the tonal centers or key changes within a musical composition. By mapping the prominence of different keys throughout a piece, it helps reveal modulations, stability, and tonal hierarchies. Keygrams are valuable for understanding the structural flow of a piece and are often used in automatic key detection and comparative music analysis.
+
+
 ### Timbre & Chroma Analysis
 
-```{r, out.width="100%", out.height="60%"}
+```{r, out.width="100%", out.height="50%"}
 
 chroma_plot <- "C:/Users/Wijnand/Downloads/CompuMuGit/features/features/berend-b-2.json" |>   
   compmus_chroma(norm = "identity") |>                 # Change the norm
