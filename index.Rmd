@@ -33,14 +33,14 @@ source("compmus.R")
 ### Novelty function
 
 ```{r, out.width="100%", out.height="50%"}
-"C:/Users/Wijnand/Downloads/CompuMuGit/features/features/berend-b-2.json" |>
+"C:/Users/Wijnand/Downloads/CompuMuGit/features/features/wijnand-h-1.json" |>
   compmus_energy_novelty() |> 
   ggplot(aes(t, novelty)) +
   geom_line() +
   theme_minimal() +
   labs(x = "Time (s)", y = "Energy Novelty")
 
-"C:/Users/Wijnand/Downloads/CompuMuGit/features/features/berend-b-2.json" |>
+"C:/Users/Wijnand/Downloads/CompuMuGit/features/features/wijnand-h-1.json" |>
   compmus_spectral_novelty() |> 
   ggplot(aes(t, novelty)) +
   geom_line() +
@@ -58,7 +58,7 @@ Here we see an **energy novelty** plot and a **spectral novelty** plot. They loo
 ### Tempograms
 
 ```{r, out.width="100%", out.height="50%"}
-"C:/Users/Wijnand/Downloads/CompuMuGit/features/features/berend-b-2.json" |>
+"C:/Users/Wijnand/Downloads/CompuMuGit/features/features/wijnand-h-1.json" |>
   compmus_tempogram(window_size = 8, hop_size = 1, cyclic = TRUE) |>
   ggplot(aes(x = time, y = bpm, fill = power)) +
   geom_raster() +
@@ -159,7 +159,7 @@ key_templates <-
     "D#:min", circshift(minor_key, 3)
   )
 
-"C:/Users/Wijnand/Downloads/CompuMuGit/features/features/berend-b-2.json" |> 
+"C:/Users/Wijnand/Downloads/CompuMuGit/features/features/wijnand-h-1.json" |> 
   compmus_chroma(norm = "euclidean") |> 
   compmus_match_pitch_templates(
     chord_templates,         # Change to chord_templates if desired
@@ -172,7 +172,7 @@ key_templates <-
   labs(x = "Time (s)", y = "Template", fill = NULL) +
   theme_classic()
 
-"C:/Users/Wijnand/Downloads/CompuMuGit/features/features/berend-b-2.json" |> 
+"C:/Users/Wijnand/Downloads/CompuMuGit/features/features/wijnand-h-1.json" |> 
   compmus_chroma(norm = "euclidean") |> 
   compmus_match_pitch_templates(
     key_templates,         # Change to chord_templates if desired
@@ -203,7 +203,7 @@ key_templates <-
 
 ```{r, out.width="100%", out.height="50%"}
 
-chroma_plot <- "C:/Users/Wijnand/Downloads/CompuMuGit/features/features/berend-b-2.json" |>   
+chroma_plot <- "C:/Users/Wijnand/Downloads/CompuMuGit/features/features/wijnand-h-1.json" |>   
   compmus_chroma(norm = "identity") |>                 # Change the norm
   compmus_self_similarity(
     feature = pc,
@@ -216,7 +216,7 @@ chroma_plot <- "C:/Users/Wijnand/Downloads/CompuMuGit/features/features/berend-b
   theme_classic()       
 chroma_plot
 
-chroma_plot <- "C:/Users/Wijnand/Downloads/CompuMuGit/features/features/berend-b-2.json" |>  
+chroma_plot <- "C:/Users/Wijnand/Downloads/CompuMuGit/features/features/wijnand-h-1.json" |>  
   compmus_mfccs(norm = "identity") |>                  # Change the norm
   compmus_self_similarity(
     feature = mfcc,
