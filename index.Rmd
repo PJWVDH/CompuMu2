@@ -27,10 +27,90 @@ library(tidyverse)
 library(flexdashboard)
 library(plotly)
 library(signal)
+library(tidymodels)
+library(ggdendro)
+library(heatmaply)
 source("compmus.R")
 ```
 
-### Novelty function
+
+Clustering {.storyboard}
+=========================================
+
+### Hierarchical clustering
+
+
+```{r, out.width="100%", out.height="50%"}
+
+compmus2025 <- read_csv("C:/Users/Wijnand/Downloads/CompuMuGit/compmus2025.csv")
+
+get_conf_mat <- function(fit) {
+  outcome <- .get_tune_outcome_names(fit)
+  fit |> 
+    collect_predictions() |> 
+    conf_mat(truth = outcome, estimate = .pred_class)
+}  
+
+get_pr <- function(fit) {
+  fit |> 
+    conf_mat_resampled() |> 
+    group_by(Prediction) |> mutate(precision = Freq / sum(Freq)) |> 
+    group_by(Truth) |> mutate(recall = Freq / sum(Freq)) |> 
+    ungroup() |> filter(Prediction == Truth) |> 
+    select(class = Prediction, precision, recall)
+}
+
+cluster_juice <-
+  recipe(
+    filename ~
+      arousal +
+      danceability +
+      instrumentalness +
+      tempo +
+      valence,
+    data = compmus2025
+  ) |>
+  step_center(all_predictors()) |>
+  step_scale(all_predictors()) |> 
+  # step_range(all_predictors()) |> 
+  prep(compmus2025) |>
+  juice() |>
+  column_to_rownames("filename")
+
+
+compmus_dist <- dist(cluster_juice, method = "euclidean")
+
+compmus_dist |> 
+  hclust(method = "single") |> # Try single, average, and complete.
+  dendro_data() |>
+  ggdendrogram()
+
+
+```
+
+***
+
+Here we see some chit
+
+### Heatmaps
+
+```{r, out.width="100%", out.height="50%"}
+heatmaply(
+  cluster_juice,
+  hclustfun = hclust,
+  hclust_method = "average",  # Change for single, average, or complete linkage.
+  dist_method = "euclidean"
+)
+```
+
+***
+
+Here we see some chit
+
+Novelty functions {.storyboard}
+=========================================
+
+### Energy plot track 1
 
 ```{r, out.width="100%", out.height="50%"}
 "C:/Users/Wijnand/Downloads/CompuMuGit/features/features/wijnand-h-1.json" |>
@@ -40,7 +120,51 @@ source("compmus.R")
   theme_minimal() +
   labs(x = "Time (s)", y = "Energy Novelty")
 
+```
+
+***
+
+Here we see an **energy novelty** plot and a **spectral novelty** plot. They look sick.
+
+### Energy plot track 2
+
+```{r, out.width="100%", out.height="50%"}
+
+"C:/Users/Wijnand/Downloads/CompuMuGit/features/features/wijnand-h-2.json" |>
+  compmus_energy_novelty() |> 
+  ggplot(aes(t, novelty)) +
+  geom_line() +
+  theme_minimal() +
+  labs(x = "Time (s)", y = "Energy Novelty")
+
+
+```
+
+***
+
+Here we see an **energy novelty** plot and a **spectral novelty** plot. They look sick.
+
+### spectral track 1
+
+```{r, out.width="100%", out.height="50%"}
 "C:/Users/Wijnand/Downloads/CompuMuGit/features/features/wijnand-h-1.json" |>
+  compmus_spectral_novelty() |> 
+  ggplot(aes(t, novelty)) +
+  geom_line() +
+  theme_minimal() +
+  labs(x = "Time (s)", y = "Spectral Novelty")
+
+```
+
+***
+
+Here we see an **energy novelty** plot and a **spectral novelty** plot. They look sick.
+
+### spectral track 2
+
+```{r, out.width="100%", out.height="50%"}
+
+"C:/Users/Wijnand/Downloads/CompuMuGit/features/features/wijnand-h-2.json" |>
   compmus_spectral_novelty() |> 
   ggplot(aes(t, novelty)) +
   geom_line() +
@@ -50,12 +174,12 @@ source("compmus.R")
 
 ***
 
-Here we see an **energy novelty** plot and a **spectral novelty** plot. They look sick. 
+Here we see an **energy novelty** plot and a **spectral novelty** plot. They look sick.
 
+Tempograms {.storyboard}
+=========================================
 
-
-
-### Tempograms
+### Tempograms track 1
 
 ```{r, out.width="100%", out.height="50%"}
 "C:/Users/Wijnand/Downloads/CompuMuGit/features/features/wijnand-h-1.json" |>
@@ -72,8 +196,27 @@ Here we see an **energy novelty** plot and a **spectral novelty** plot. They loo
 
 Here we see an **Tempogram**. This looks absolutely insane does it not? very cool
 
+### Tempograms track 2
 
-### Chordogram & keygram
+```{r, out.width="100%", out.height="50%"}
+"C:/Users/Wijnand/Downloads/CompuMuGit/features/features/wijnand-h-2.json" |>
+  compmus_tempogram(window_size = 8, hop_size = 1, cyclic = TRUE) |>
+  ggplot(aes(x = time, y = bpm, fill = power)) +
+  geom_raster() +
+  scale_fill_viridis_c(guide = "none") +
+  labs(x = "Time (s)", y = "Tempo (BPM)") +
+  theme_classic()
+
+```
+
+***
+
+Here we see an **Tempogram**. This looks absolutely insane does it not? very cool
+
+Keygrams & chordograms {.storyboard}
+=========================================
+
+### Chordogram track 1
 
 ```{r, out.width="100%", out.height="50%"}
 
@@ -172,6 +315,44 @@ key_templates <-
   labs(x = "Time (s)", y = "Template", fill = NULL) +
   theme_classic()
 
+```
+
+***
+
+- **In the plots we can see a chordogram and a keygram respectively. My tracks are not yet in the corpus unfortunately, so the tracks that are visible are those of Berend-2. When my tracks are added I will go deeper into the analysis. The norm right now is euclidean and the distance is cosine**.
+
+
+-A **chordogram** is a visual representation of the harmonic structure of a musical piece, showing the distribution and progression of chords over time. It often appears as a heatmap or graph, highlighting the frequency and transitions of different chords, helping musicologists analyze harmonic patterns, tonality, and stylistic tendencies. Chordograms are especially useful in computational musicology to compare harmonic trends across genres or historical periods.
+
+### Chordogram track 2
+
+```{r, out.width="100%", out.height="50%"}
+
+"C:/Users/Wijnand/Downloads/CompuMuGit/features/features/wijnand-h-2.json" |> 
+  compmus_chroma(norm = "euclidean") |> 
+  compmus_match_pitch_templates(
+    chord_templates,         # Change to chord_templates if desired
+    norm = "euclidean",       # Try different norms (and match it with what you used in `compmus_chroma`)
+    distance = "cosine"   # Try different distance metrics
+  ) |>
+  ggplot(aes(x = time, y = name, fill = d)) + 
+  geom_raster() +
+  scale_fill_viridis_c(guide = "none") +               # Change the colours?
+  labs(x = "Time (s)", y = "Template", fill = NULL) +
+  theme_classic()
+
+```
+
+***
+
+- **In the plots we can see a chordogram and a keygram respectively. My tracks are not yet in the corpus unfortunately, so the tracks that are visible are those of Berend-2. When my tracks are added I will go deeper into the analysis. The norm right now is euclidean and the distance is cosine**.
+
+
+-A **chordogram** is a visual representation of the harmonic structure of a musical piece, showing the distribution and progression of chords over time. It often appears as a heatmap or graph, highlighting the frequency and transitions of different chords, helping musicologists analyze harmonic patterns, tonality, and stylistic tendencies. Chordograms are especially useful in computational musicology to compare harmonic trends across genres or historical periods.
+
+### keygram track 1
+
+```{r, out.width="100%", out.height="50%"}
 "C:/Users/Wijnand/Downloads/CompuMuGit/features/features/wijnand-h-1.json" |> 
   compmus_chroma(norm = "euclidean") |> 
   compmus_match_pitch_templates(
@@ -185,36 +366,41 @@ key_templates <-
   labs(x = "Time (s)", y = "Template", fill = NULL) +
   theme_classic()
 
+```
 
+***
+
+-A **keygram** is a graphical tool that represents the tonal centers or key changes within a musical composition. By mapping the prominence of different keys throughout a piece, it helps reveal modulations, stability, and tonal hierarchies. Keygrams are valuable for understanding the structural flow of a piece and are often used in automatic key detection and comparative music analysis.
+
+### keygram track 2
+
+```{r, out.width="100%", out.height="50%"}
+
+"C:/Users/Wijnand/Downloads/CompuMuGit/features/features/wijnand-h-2.json" |> 
+  compmus_chroma(norm = "euclidean") |> 
+  compmus_match_pitch_templates(
+    key_templates,         # Change to chord_templates if desired
+    norm = "euclidean",       # Try different norms (and match it with what you used in `compmus_chroma`)
+    distance = "cosine"   # Try different distance metrics
+  ) |>
+  ggplot(aes(x = time, y = name, fill = d)) + 
+  geom_raster() +
+  scale_fill_viridis_c(guide = "none") +               # Change the colours?
+  labs(x = "Time (s)", y = "Template", fill = NULL) +
+  theme_classic()
 
 ```
 
 ***
 
-- **In the plots we can see a chordogram and a keygram respectively. My tracks are not yet in the corpus unfortunately, so the tracks that are visible are those of Berend-2. When my tracks are added I will go deeper into the analysis. The norm right now is euclidean and the distance is cosine**.
-
-
--A **chordogram** is a visual representation of the harmonic structure of a musical piece, showing the distribution and progression of chords over time. It often appears as a heatmap or graph, highlighting the frequency and transitions of different chords, helping musicologists analyze harmonic patterns, tonality, and stylistic tendencies. Chordograms are especially useful in computational musicology to compare harmonic trends across genres or historical periods.
-
 -A **keygram** is a graphical tool that represents the tonal centers or key changes within a musical composition. By mapping the prominence of different keys throughout a piece, it helps reveal modulations, stability, and tonal hierarchies. Keygrams are valuable for understanding the structural flow of a piece and are often used in automatic key detection and comparative music analysis.
 
+Chroma & Timbre {.storyboard}
+=========================================
 
-### Timbre & Chroma Analysis
+### Timbre Analysis track 1
 
 ```{r, out.width="100%", out.height="50%"}
-
-chroma_plot <- "C:/Users/Wijnand/Downloads/CompuMuGit/features/features/wijnand-h-1.json" |>   
-  compmus_chroma(norm = "identity") |>                 # Change the norm
-  compmus_self_similarity(
-    feature = pc,
-    distance = "euclidean"                             # Change the distance
-  ) |>
-  ggplot(aes(x = xtime, y = ytime, fill = d)) + 
-  geom_raster() +
-  scale_fill_viridis_c(guide = "none") +               # Change the colours?
-  labs(x = "Time (s)", y = NULL, fill = NULL) +
-  theme_classic()       
-chroma_plot
 
 chroma_plot <- "C:/Users/Wijnand/Downloads/CompuMuGit/features/features/wijnand-h-1.json" |>  
   compmus_mfccs(norm = "identity") |>                  # Change the norm
@@ -234,13 +420,87 @@ chroma_plot
 
 ***
 
-Explanation: Chroma & Timbre Analyse
-
-- **Chroma Self-Similarity:** this plot is visualizing the harmonic structure of a musical piece.Patterns in the chroma self similarity can point to repeating chords and music scales. The song chosen is the first track from Berend. This is because my tracks are unfortunatly not yet in the corpus. So I will explain this plot as soon as it is my song. The same goes for the timbre self similarity plot
 - **Timbre (MFCC) Self-Similarity:** This represents the timbre of the song. Variations in timbre can be related to instrumentelness and dynamics.
 
 By looking at the plots together we can look at similarities between the plots and maybe see some interesting patterns.
 
+### Timbre Analysis track 2
+
+```{r, out.width="100%", out.height="50%"}
+
+chroma_plot <- "C:/Users/Wijnand/Downloads/CompuMuGit/features/features/wijnand-h-2.json" |>  
+  compmus_mfccs(norm = "identity") |>                  # Change the norm
+  compmus_self_similarity(
+    feature = mfcc,
+    distance = "euclidean"                             # Change the distance
+  ) |>   
+  ggplot(aes(x = xtime, y = ytime, fill = d)) + 
+  geom_raster() +
+  scale_fill_viridis_c(guide = "none") +               # Change the colours?
+  labs(x = "Time (s)", y = NULL, fill = NULL) +
+  theme_classic() 
+
+chroma_plot
+
+```
+
+***
+
+- **Timbre (MFCC) Self-Similarity:** This represents the timbre of the song. Variations in timbre can be related to instrumentelness and dynamics.
+
+By looking at the plots together we can look at similarities between the plots and maybe see some interesting patterns.
+
+### Chroma analysis track 1
+
+```{r, out.width="100%", out.height="50%"}
+chroma_plot <- "C:/Users/Wijnand/Downloads/CompuMuGit/features/features/wijnand-h-1.json" |>   
+  compmus_chroma(norm = "identity") |>                 # Change the norm
+  compmus_self_similarity(
+    feature = pc,
+    distance = "euclidean"                             # Change the distance
+  ) |>
+  ggplot(aes(x = xtime, y = ytime, fill = d)) + 
+  geom_raster() +
+  scale_fill_viridis_c(guide = "none") +               # Change the colours?
+  labs(x = "Time (s)", y = NULL, fill = NULL) +
+  theme_classic()       
+chroma_plot
+
+```
+
+***
+
+Explanation: Chroma & Timbre Analyse
+
+- **Chroma Self-Similarity:** this plot is visualizing the harmonic structure of a musical piece.Patterns in the chroma self similarity can point to repeating chords and music scales. The song chosen is the first track from Berend. This is because my tracks are unfortunatly not yet in the corpus. So I will explain this plot as soon as it is my song. The same goes for the timbre self similarity plot
+
+### Chroma analysis track 2
+
+```{r, out.width="100%", out.height="50%"}
+
+chroma_plot <- "C:/Users/Wijnand/Downloads/CompuMuGit/features/features/wijnand-h-2.json" |>   
+  compmus_chroma(norm = "identity") |>                 # Change the norm
+  compmus_self_similarity(
+    feature = pc,
+    distance = "euclidean"                             # Change the distance
+  ) |>
+  ggplot(aes(x = xtime, y = ytime, fill = d)) + 
+  geom_raster() +
+  scale_fill_viridis_c(guide = "none") +               # Change the colours?
+  labs(x = "Time (s)", y = NULL, fill = NULL) +
+  theme_classic()       
+chroma_plot
+```
+
+***
+
+Explanation: Chroma & Timbre Analyse
+
+- **Chroma Self-Similarity:** this plot is visualizing the harmonic structure of a musical piece.Patterns in the chroma self similarity can point to repeating chords and music scales. The song chosen is the first track from Berend. This is because my tracks are unfortunatly not yet in the corpus. So I will explain this plot as soon as it is my song. The same goes for the timbre self similarity plot
+
+
+Introduction {.storyboard}
+=========================================
 
 ### Welcome to Computational Musicology 2025!
 
