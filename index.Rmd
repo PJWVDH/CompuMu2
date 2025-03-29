@@ -110,7 +110,7 @@ Here we see some chit
 Novelty functions {.storyboard}
 =========================================
 
-### Energy plot track 1
+### Energy plot Daft Punk
 
 ```{r, out.width="100%", out.height="50%"}
 "C:/Users/Wijnand/Downloads/CompuMuGit/features/features/wijnand-h-1.json" |>
@@ -126,7 +126,7 @@ Novelty functions {.storyboard}
 
 Here we see an **energy novelty** plot and a **spectral novelty** plot. They look sick.
 
-### Energy plot track 2
+### Energy plot Blondie
 
 ```{r, out.width="100%", out.height="50%"}
 
@@ -144,7 +144,7 @@ Here we see an **energy novelty** plot and a **spectral novelty** plot. They loo
 
 Here we see an **energy novelty** plot and a **spectral novelty** plot. They look sick.
 
-### spectral track 1
+### spectral Daft Punk
 
 ```{r, out.width="100%", out.height="50%"}
 "C:/Users/Wijnand/Downloads/CompuMuGit/features/features/wijnand-h-1.json" |>
@@ -160,7 +160,7 @@ Here we see an **energy novelty** plot and a **spectral novelty** plot. They loo
 
 Here we see an **energy novelty** plot and a **spectral novelty** plot. They look sick.
 
-### spectral track 2
+### spectral Blondie
 
 ```{r, out.width="100%", out.height="50%"}
 
@@ -179,7 +179,7 @@ Here we see an **energy novelty** plot and a **spectral novelty** plot. They loo
 Tempograms {.storyboard}
 =========================================
 
-### Tempograms track 1
+### Tempograms Daft Punk
 
 ```{r, out.width="100%", out.height="50%"}
 "C:/Users/Wijnand/Downloads/CompuMuGit/features/features/wijnand-h-1.json" |>
@@ -196,7 +196,7 @@ Tempograms {.storyboard}
 
 Here we see an **Tempogram**. This looks absolutely insane does it not? very cool
 
-### Tempograms track 2
+### Tempograms Blondie
 
 ```{r, out.width="100%", out.height="50%"}
 "C:/Users/Wijnand/Downloads/CompuMuGit/features/features/wijnand-h-2.json" |>
@@ -216,7 +216,7 @@ Here we see an **Tempogram**. This looks absolutely insane does it not? very coo
 Keygrams & chordograms {.storyboard}
 =========================================
 
-### Chordogram track 1
+### Chordogram Daft Punk
 
 ```{r, out.width="100%", out.height="50%"}
 
@@ -324,7 +324,7 @@ key_templates <-
 
 -A **chordogram** is a visual representation of the harmonic structure of a musical piece, showing the distribution and progression of chords over time. It often appears as a heatmap or graph, highlighting the frequency and transitions of different chords, helping musicologists analyze harmonic patterns, tonality, and stylistic tendencies. Chordograms are especially useful in computational musicology to compare harmonic trends across genres or historical periods.
 
-### Chordogram track 2
+### Chordogram Blondie
 
 ```{r, out.width="100%", out.height="50%"}
 
@@ -350,7 +350,7 @@ key_templates <-
 
 -A **chordogram** is a visual representation of the harmonic structure of a musical piece, showing the distribution and progression of chords over time. It often appears as a heatmap or graph, highlighting the frequency and transitions of different chords, helping musicologists analyze harmonic patterns, tonality, and stylistic tendencies. Chordograms are especially useful in computational musicology to compare harmonic trends across genres or historical periods.
 
-### keygram track 1
+### keygram Daft Punk
 
 ```{r, out.width="100%", out.height="50%"}
 "C:/Users/Wijnand/Downloads/CompuMuGit/features/features/wijnand-h-1.json" |> 
@@ -372,7 +372,7 @@ key_templates <-
 
 -A **keygram** is a graphical tool that represents the tonal centers or key changes within a musical composition. By mapping the prominence of different keys throughout a piece, it helps reveal modulations, stability, and tonal hierarchies. Keygrams are valuable for understanding the structural flow of a piece and are often used in automatic key detection and comparative music analysis.
 
-### keygram track 2
+### keygram Blondie
 
 ```{r, out.width="100%", out.height="50%"}
 
@@ -398,7 +398,7 @@ key_templates <-
 Chroma & Timbre {.storyboard}
 =========================================
 
-### Timbre Analysis track 1
+### Timbre Analysis Daft Punk
 
 ```{r, out.width="100%", out.height="50%"}
 
@@ -420,11 +420,9 @@ chroma_plot
 
 ***
 
-- **Timbre (MFCC) Self-Similarity:** This represents the timbre of the song. Variations in timbre can be related to instrumentelness and dynamics.
+The plot for Daft Punk’s track exhibits a more rigid and pronounced grid pattern, suggesting a highly structured and loop-based composition. The strong and evenly spaced vertical and horizontal bands indicate clear repetitions of musical motifs, characteristic of electronic music with recurring loops and sampled elements. Unlike Blondie’s track, this one is instrumental, which may explain the increased structural uniformity. Without lyrical variations to introduce new sonic textures, the timbre remains more consistent throughout, contributing to the song’s steady and repetitive nature.
 
-By looking at the plots together we can look at similarities between the plots and maybe see some interesting patterns.
-
-### Timbre Analysis track 2
+### Timbre Analysis Blondie
 
 ```{r, out.width="100%", out.height="50%"}
 
@@ -446,11 +444,21 @@ chroma_plot
 
 ***
 
-- **Timbre (MFCC) Self-Similarity:** This represents the timbre of the song. Variations in timbre can be related to instrumentelness and dynamics.
+The timbre self-similarity plot for Blondie’s track shows a structured yet somewhat varied pattern. We can observe distinct diagonal grid-like formations, indicating the recurring sections within the song. The presence of intersecting horizontal and vertical bands suggests repetition in both melodic and rhythmic elements, likely corresponding to the verse-chorus transitions. The brighter yellow-green edges hint at some timbral contrast at the beginning and end of the track, possibly due to the introduction and outro that differ from the main body of the song. Since this track includes lyrics, the variations in the plot may also reflect changes in vocal delivery, melody, and lyrical phrasing across different sections.
 
-By looking at the plots together we can look at similarities between the plots and maybe see some interesting patterns.
+### Timbre comparisons
 
-### Chroma analysis track 1
+**Repetition & Structure**: The Daft Punk track has a more systematic and loop-driven structure, while Blondie’s track, though structured, shows more variation across its sections.
+
+**Variation & Transitions**: The Blondie plot suggests more dynamic transitions between sections, with less rigid repetition, while the Daft Punk track leans towards a more predictable and repetitive framework.
+
+**Timbre Diversity**: The differences in color intensity suggest that the Blondie track has slightly more variation in timbre across the timeline, whereas the Daft Punk song maintains a steadier sonic texture.
+
+**Lyrics vs. Instrumental**: A key difference is the presence of lyrics in the Blondie track, which likely contributes to its more varied timbre. Changes in vocal delivery, phrasing, and melodic expression create distinct sections that contrast with the Daft Punk instrumental approach, where repetition is used as a primary compositional tool.
+
+**Overall**, these plots reflect the differences in musical style: the Blondie song follows a traditional verse-chorus structure with natural variations driven by lyrics and melody, whereas the Daft Punk track relies on instrumental loops, creating a more predictable and structured sonic experience.
+
+### Chroma analysis Daft Punk
 
 ```{r, out.width="100%", out.height="50%"}
 chroma_plot <- "C:/Users/Wijnand/Downloads/CompuMuGit/features/features/wijnand-h-1.json" |>   
@@ -474,7 +482,7 @@ Explanation: Chroma & Timbre Analyse
 
 - **Chroma Self-Similarity:** this plot is visualizing the harmonic structure of a musical piece.Patterns in the chroma self similarity can point to repeating chords and music scales. The song chosen is the first track from Berend. This is because my tracks are unfortunatly not yet in the corpus. So I will explain this plot as soon as it is my song. The same goes for the timbre self similarity plot
 
-### Chroma analysis track 2
+### Chroma analysis Blondie
 
 ```{r, out.width="100%", out.height="50%"}
 
@@ -502,9 +510,7 @@ Explanation: Chroma & Timbre Analyse
 Introduction {.storyboard}
 =========================================
 
-### Welcome to Computational Musicology 2025!
-
-Welcome to Computational Musicology 2025! This is going to be the intro page for the final portfolio
+### Welcome to my portfolio!
 
 
 ``` {r}
@@ -513,9 +519,15 @@ library(htmltools)
 
 text_content <- tags$div(
   tags$h3("Welcome to my portfolio!"),
-  tags$p("Below are two tracks. Click the play buttons to listen to each track."),
-  tags$p("Track 1 is an AI generated track on stable audio with the following prompt: New wave, punk pop, rhythmic guitar riffs, upbeat bassline, driving drums, quirky synths, energetic girl vocals, melodic, retro vibes, 70s/80s influence, playful, danceable, confident, cheeky lyrics, funky groove, fast tempo, pop with attitude."),
-  tags$p("Track 2 is an AI generated track generated by stable audio with the prompt: Electronic, French house, funky bassline, robotic vocals, vocoder, disco groove, punchy drum machines, retro-futuristic synths, filter sweeps, crisp hi-hats, four-on-the-floor beat, hypnotic loops, atmospheric pads, analog warmth, danceable, smooth yet energetic.")
+   tags$p("Artificial intelligence is transforming the way we create and experience music. This project explores the creative possibilities and limitations of AI-generated tracks by analyzing two compositions made with Stable Audio. While both tracks were created using detailed prompts, they turned out to be strikingly different. One includes lyrics, while the other remains entirely instrumental.
+
+This unexpected outcome (because for both tracks I tried to get vocals) raises intriguing questions: How does the presence or absence of lyrics shape our interpretation of a song? Does AI understand musical intent, or does it simply follow patterns without grasping meaning? By examining key musical features, such as structure, instrumentation, and emotional impact, this project seeks to uncover how AI-generated music aligns with—or deviates from—human expectations."),
+  tags$p("Below are the two tracks. Click the play buttons to listen to each track."),
+
+  tags$p("Track 1 is an AI generated track generated by stable audio with the prompt: Electronic, French house, funky bassline, robotic vocals, vocoder, disco groove, punchy drum machines, retro-futuristic synths, filter sweeps, crisp hi-hats, four-on-the-floor beat, hypnotic loops, atmospheric pads, analog warmth, danceable, smooth yet energetic. The inspiration for this track came from Daft Punk."),
+  tags$p("Track 2 is an AI generated track on stable audio with the following prompt: New wave, punk pop, rhythmic guitar riffs, upbeat bassline, driving drums, quirky synths, energetic girl vocals, melodic, retro vibes, 70s/80s influence, playful, danceable, confident, cheeky lyrics, funky groove, fast tempo, pop with attitude. With this prompt I tried to make a Blondie like track"),
+  
+  tags$p("As the terms 'track 1' and 'track 2' are a bit too vague and will lead to confusion, Track 1 will in future reference be called the 'Daft punk track' and 'track 2' will be known as the 'Blondie track'."  )
 )
 
 
@@ -535,47 +547,41 @@ track2_player <- audio_player("C:/Users/Wijnand/Downloads/CompuMuGit/blondie.mp3
 HTML(as.character(tagList(
   text_content,
   
-  tags$h4("Track 1"),
-  track1_player,
+  tags$h4("Track 1 (Daft punk)"),
+  track2_player,
   
-  tags$h4("Track 2"),
-  track2_player
+  tags$h4("Track 2 (Blondie)"),
+  track1_player
 )))
 
 
 ```
 
-### Visualising the AI Song Contest
+### First insights: Track-level features
 
-```{r}
-aisc2024 <- read_csv("C:/Users/Wijnand/Downloads/CompuMuGit/aisc2024.csv")
+```{r, out.width="100%", out.height="50%"}
+# Data inladen
+corpus <- read.csv("C:/Users/Wijnand/Downloads/CompuMuGit/compmus2025.csv")
 
-aisc2024 |> 
-  mutate(danceability_bin = cut(danceability, breaks = 4, labels = c("Low", "Medium", "High", "Very High"))) |> 
-  ggplot(aes(x = tempo, fill = danceability_bin)) +
-  geom_density(alpha = 0.5) +
-  scale_fill_viridis_d() +  # Use a discrete version of viridis
-  theme_minimal(base_size = 14) +  # Set base text size
-  theme(
-    panel.background = element_rect(fill = "white", color = "white"),  # White background
-    plot.background = element_rect(fill = "white", color = "white"),   # White outer background
-    legend.background = element_rect(fill = "white"),  # White legend background
-    text = element_text(color = "black"),  # Set all text to black
-    axis.text = element_text(color = "black"),  # Black axis labels
-    axis.title = element_text(color = "black"),  # Black axis titles
-    legend.text = element_text(color = "black"),  # Black legend text
-    legend.title = element_text(color = "black")   # Black legend title
-  ) +
-  labs(
-    x = "Tempo",
-    y = "Density",
-    fill = "Danceability Level",
-    title = "Density Distribution of Tempo",
-    subtitle = "Faceted by Danceability Levels"
-  ) +
-  facet_wrap(~danceability_bin)
-ggplotly()
+# Jouw tracks markeren
+corpus <- corpus %>%
+  mutate(highlight = ifelse(filename %in% c("wijnand-h-1", "wijnand-h-2"), "My tracks", "Corpus"))
 
+# Basis ggplot
+p <- ggplot(corpus, aes(x = valence, y = danceability, color = highlight, text = filename)) +
+  geom_point(alpha = 0.7, size = 3) +
+  scale_color_manual(values = c("My tracks" = "#3ADAC6", "Corpus" = "gray")) +
+  labs(title = "Explorative Analysis of AI-Generated Tracks",
+       x = "Valence",
+       y = "Danceability",
+       color = "Track Type") +
+  theme_minimal()
+
+# Interactieve plot met plotly
+interactive_plot <- ggplotly(p, tooltip = "text")
+
+# Plot tonen
+interactive_plot
 
 
 ```
@@ -583,23 +589,18 @@ ggplotly()
 
 ***
 
-Exploring Tempo Distributions
-This density plot visualizes the distribution of tempos in the AI Song Contest dataset. The x-axis represents tempo (beats per minute, BPM), while the y-axis shows density, indicating how frequently different tempo ranges appear in the dataset.
+Interpreting the Explorative Plot
+The scatterplot above visualizes the valence (positivity) and danceability of all AI-generated tracks in our class corpus. Each gray dot represents a track from the corpus, while the two highlighted red dots indicate my AI-generated tracks: "wijnand-h-1" and "wijnand-h-2".
 
-The fill color represents danceability, meaning that more danceable songs are highlighted in different shades. This allows us to explore whether certain tempos are more common in highly danceable tracks.
+Key Observations:
+General Distribution: The corpus exhibits a wide spread in both valence and danceability, with most tracks clustering in the mid-to-high danceability range.
 
-Key Insights:
-The dataset shows clear peaks, suggesting that AI-generated songs tend to favor specific tempo ranges.
-The smooth distribution helps identify whether AI compositions cluster around conventional musical tempo patterns or diverge from human-created norms.
-By incorporating danceability, we gain additional insight into the relationship between rhythmic elements and listener engagement.
-This visualization helps us understand how AI-generated music organizes rhythmic elements, potentially revealing biases or preferences in algorithmic composition.
+My Tracks:
 
+"wijnand-h-1" (the daft punk track) and "wijnand-h-2" (the blondie track) both have moderate valence scores, suggesting they are neither extremely happy nor sad in tone. This seems to be correct when listening to the tracks.
 
-### Discussion: Insights & Next Steps
+Their danceability values are relatively average compared to the corpus, meaning they align well with the overall dataset in terms of rhythmic movement and groove. Again I would say this is correct when listning to the songs. The Blondie track feels a bit more danceable and is classified as such.
 
-- **Patterns observed:** The dataset shows clear peaks, suggesting that AI-generated songs tend to favor specific tempo ranges. The smooth distribution helps identify whether AI compositions cluster around conventional musical tempo patterns or diverge from human-created norms.
-- **Limitations:** The dataset lacks information on lyrical content and emotional perception.
+Potential Differences: While one of my tracks has a slightly lower danceability score, the differences may stem from the presence (or absence) of lyrics, instrumental focus, or rhythmic structure. Further analysis of other features, such as tempo or instrumentalness, could provide more insights into these variations.
 
-### My Tracks & Creation Process
-
-This repository also includes original compositions. These tracks were created using AI-assisted composition tools. The goal was to experiment with algorithmic composition techniques while maintaining human musical intuition.
+This plot provides a first look at how my AI-generated music fits within the broader dataset and sets the stage for a deeper exploration of lyrical vs. instrumental differences.
