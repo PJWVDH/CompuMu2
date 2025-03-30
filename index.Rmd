@@ -214,9 +214,12 @@ chroma_plot
 
 ***
 
-Explanation: Chroma & Timbre Analyse
+- **Chroma Self-Similarity:** this plot is visualizing the harmonic structure of a musical piece. Patterns in the chroma self similarity can point to repeating chords and music scales.
 
-- **Chroma Self-Similarity:** this plot is visualizing the harmonic structure of a musical piece.Patterns in the chroma self similarity can point to repeating chords and music scales. The song chosen is the first track from Berend. This is because my tracks are unfortunatly not yet in the corpus. So I will explain this plot as soon as it is my song. The same goes for the timbre self similarity plot
+-We see in the plot that there are some repetitions. Around timestamps 45, 80 and 130 we see that a block like pattern happens that are  very similar. When we listen to the songs we hear that this the part where the song gets a more eerie vibe and builds up to a next part. This musical part is recurring theme in the song and is visualised well in the chromagram.
+
+
+
 
 ### Chroma analysis Blondie
 
@@ -238,9 +241,34 @@ chroma_plot
 
 ***
 
-Explanation: Chroma & Timbre Analyse
+- **Chroma Self-Similarity:** For the Blondie track clear horizontal and vertical banding patterns are visible. This is most likely indicating the repeated harmonic structures such as the verses and choruses aligning harmonically.
 
-- **Chroma Self-Similarity:** this plot is visualizing the harmonic structure of a musical piece.Patterns in the chroma self similarity can point to repeating chords and music scales. The song chosen is the first track from Berend. This is because my tracks are unfortunatly not yet in the corpus. So I will explain this plot as soon as it is my song. The same goes for the timbre self similarity plot
+- Another interesting visual in the plot is the clear **non-similarity** of the time stamp 120 to the rest of the track. This is interesting because this exactly the part where the lyrics stop. This could be an indication that the lyrics play a big roll in creating the self similarity plot.
+
+### Comparisons Chromagram
+
+The chroma self-similarity plots of the Blondie and Daft Punk tracks reveal key differences in their harmonic structure and repetition patterns.
+
+**Harmonic Repetition & Structure**
+
+The Blondie track exhibits a strong grid-like pattern, indicating a structured verse-chorus format with distinct harmonic sections that repeat predictably.
+
+The Daft Punk track shows a more loop-based harmonic structure, with extended repetition of chord progressions and fewer large harmonic shifts.
+
+**Variability & Transitions**
+
+In Blondie’s plot, we have a clear point of variation, likely corresponding to the non lyrical-driven section such as a instrumental break.
+
+Daft Punk’s track, being instrumental and electronic, likely has smoother harmonic transitions with more gradual changes rather than distinct sections.
+
+**Lyrics vs. Instrumental Influence**
+
+Since Blondie’s track includes lyrics, its harmonic progression might be more dynamic, aligning with verse-chorus development.
+
+The Daft Punk track lacks lyrics, meaning its harmonic content is likely more consistent, reinforcing a steady groove rather than following vocal-driven chord shifts.
+
+**Conclusion**
+The Blondie track follows a more traditional pop/rock harmonic structure, with noticeable harmonic contrast between sections, while the Daft Punk track likely relies on extended repetition and smooth transitions, characteristic of electronic music. These differences in harmonic development might highlight the contrast between a lyrical, song-based composition and a loop-driven, instrumental electronic piece.
 
 Keygrams & chordograms {.storyboard}
 =========================================
@@ -348,10 +376,11 @@ key_templates <-
 
 ***
 
-- **In the plots we can see a chordogram and a keygram respectively. My tracks are not yet in the corpus unfortunately, so the tracks that are visible are those of Berend-2. When my tracks are added I will go deeper into the analysis. The norm right now is euclidean and the distance is cosine**.
+-A **chordogram** is a visual representation of the harmonic structure of a musical piece, showing the distribution and progression of chords over time. 
 
+- in the plot we see that the chords progress very similar throughout the whole songs. We see clear parts where the same structure is used. For example between 0 and 30 seconds a clear chord-progression is visible. This same chord-progression seems to happen at 90 to 120 seconds. When we listen to the songs we see that these parts are the same and are picked up very neatly by the plot.
 
--A **chordogram** is a visual representation of the harmonic structure of a musical piece, showing the distribution and progression of chords over time. It often appears as a heatmap or graph, highlighting the frequency and transitions of different chords, helping musicologists analyze harmonic patterns, tonality, and stylistic tendencies. Chordograms are especially useful in computational musicology to compare harmonic trends across genres or historical periods.
+-**Overall** the different musical parts in the songs are visible in the plot and repeating parts seem to happen at the right intervals. 
 
 ### Chordogram Blondie
 
@@ -374,10 +403,31 @@ key_templates <-
 
 ***
 
-- **In the plots we can see a chordogram and a keygram respectively. My tracks are not yet in the corpus unfortunately, so the tracks that are visible are those of Berend-2. When my tracks are added I will go deeper into the analysis. The norm right now is euclidean and the distance is cosine**.
+- In the **Chordogram** from the blondie track a very clear pattern is immideatly visible. there is a intro part between 0 and 20 seconds and then from 20 to 120 the same chord are played over and over again. When we listen to the song this is correct and only changes when the lyrics disappear and a instrumental break starts playing. this is clear at about 120 to 140 seconds. After the instrumental break the chords go back to what they were in te rest of the songs.
 
+- This is interesting because this may mean that the AI algorithm that created the songs associated lyrics with the same chords playing over and over again.
 
--A **chordogram** is a visual representation of the harmonic structure of a musical piece, showing the distribution and progression of chords over time. It often appears as a heatmap or graph, highlighting the frequency and transitions of different chords, helping musicologists analyze harmonic patterns, tonality, and stylistic tendencies. Chordograms are especially useful in computational musicology to compare harmonic trends across genres or historical periods.
+### Chorodogram comparisons
+
+Both chordograms reveal how the harmonic structure of each track develops over time, highlighting patterns of repetition and variation. However, key differences emerge when comparing the two:
+
+**Chord Repetition and Structure**
+In the Blondie track, the chord progression remains largely unchanged throughout the majority of the song (from ~20s to ~120s), with a noticeable shift only occurring during the instrumental break (~120s to ~140s). This suggests a strong link between the presence of lyrics and harmonic repetition.
+
+In contrast, the Daft Punk track features recurring harmonic structures but with more clearly defined sections. While there are repeated segments (e.g., 0-30s and 90-120s), the progression seems to have more distinct phrasing and segmentation rather than a single unchanging loop.
+
+**Impact of Lyrics on Harmony**
+The Blondie track’s clear distinction between lyrical and instrumental sections suggests that the AI-generated song follows a typical pop structure, where lyrics are tied to a stable harmonic progression, and instrumental sections allow for more variation.
+
+The Daft Punk track, being instrumental, does not rely on lyrical structure to define its harmony. Instead, its repetition and segmentation appear to be more related to looping structures typical of electronic music, where certain motifs return at specific time intervals.
+
+**Structural Variation**
+The Blondie track's chord transitions align closely with lyrical content, reinforcing the hypothesis that AI-generated music might associate harmony with vocal phrases.
+
+The Daft Punk track demonstrates recurring harmonic patterns but with more flexibility, likely emphasizing rhythmic and textural variation over rigid lyrical-harmonic pairing.
+
+**Conclusion**
+The chordograms support the idea that AI-generated music treats lyrics as a structural anchor for harmony in more conventional song formats (Blondie), whereas instrumental compositions (Daft Punk) rely more on looping and periodic repetition to create form. This suggests that AI-generated lyrics and harmonies are closely linked, whereas instrumental AI compositions may instead emphasize cyclical, evolving structures rather than strict verse-chorus forms.
 
 ### keygram Daft Punk
 
